@@ -24,7 +24,7 @@ async function generateDatasource() {
 
 async function generateUi() {
   // Also works well with Claude 3.5 Sonnet and Google Gemini 2.5 Pro
-  const llm = new OpenAI({ model: "gpt-4.1" });
+  const llm = new OpenAI({ model: "gpt-4o-mini" });
 
   const workflowModule = await import("./app/workflow");
   const UIEventSchema = (workflowModule as any).UIEventSchema;

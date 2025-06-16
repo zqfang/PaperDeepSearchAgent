@@ -36,5 +36,6 @@ next-env.d.ts
 
 output/
 storage/
-
+data/
 .env
+package-lock.json
