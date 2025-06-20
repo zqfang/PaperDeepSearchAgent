@@ -7,7 +7,7 @@ export default function Header() {
     <div className="flex items-center justify-between p-2 px-4">
       <div className="flex items-center gap-2">
         <Sparkles className="size-4" />
-        <h1 className="font-semibold">LlamaIndex App</h1>
+        <h1 className="font-semibold">Paper Agents</h1>
       </div>
       <div className="flex items-center justify-end gap-4">
         <div className="flex items-center gap-2">
@@ -25,15 +25,7 @@ export default function Header() {
             alt="Llama Logo"
           />
         </div>
-        <a
-          href="https://github.com/run-llama/LlamaIndexTS"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:bg-accent flex items-center gap-2 rounded-md border border-gray-300 px-2 py-1 text-sm"
-        >
-          <Star className="size-4" />
-          Star on GitHub
-        </a>
+
       </div>
     </div>
   );
