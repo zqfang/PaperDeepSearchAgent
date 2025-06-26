@@ -161,7 +161,7 @@ export function getWorkflow(index: VectorStoreIndex | LlamaCloudIndex) {
     };
   });
   const workflow = withState(createWorkflow());
-
+  // startEvent hanoff to  planResearchEvent
   workflow.handle([startAgentEvent], async ({ data }) => {
     const { userInput, chatHistory = [] } = data;
     const { sendEvent, state } = getContext();
@@ -190,11 +190,13 @@ export function getWorkflow(index: VectorStoreIndex | LlamaCloudIndex) {
       }),
     );
 
-    state.contextNodes.push(...retrievedNodes);
-
+    state.contextNodes.push(...retrievedNodes); // save the retrieved nodes to state contextNodes
+    // startEvent hanoff to  planResearchEvent
     return planResearchEvent.with({});
   });
-
+  // planResearchEvent(create a research plan and make a decision) hanoff to 
+  // reportEvent, cancelEvent or loop event
+  // planResearchEvent -> researchEvent -> planResearchEvent (for re-decision) -> reportEvent, cancelEvent
   workflow.handle([planResearchEvent], async ({ data }) => {
     const { sendEvent, state, stream } = getContext();
 
@@ -267,9 +269,10 @@ export function getWorkflow(index: VectorStoreIndex | LlamaCloudIndex) {
         data: { event: "analyze", state: "done" },
       }),
     );
+    // startEvent hanoff to reportEvent
     return reportEvent.with({});
   });
-
+  // save the answer to memory and send the answer to the UI
   workflow.handle([researchEvent], async ({ data }) => {
     const { sendEvent, state } = getContext();
     const { questionId, question } = data;
@@ -310,7 +313,7 @@ export function getWorkflow(index: VectorStoreIndex | LlamaCloudIndex) {
       }),
     );
   });
-
+  // write reportEvent hanoff to stopAgentEvent
   workflow.handle([reportEvent], async ({ data }) => {
     const { sendEvent, state } = getContext();
     const chatHistory = await state.memory.getAllMessages();
@@ -389,7 +392,7 @@ const createResearchPlan = async (
   const responseFormat = z.object({
     decision: z.enum(["research", "write", "cancel"]),
     researchQuestions: z.array(z.string()),
-    cancelReason: z.string().optional(),
+    cancelReason: z.string().nullable(),
   });
 
   const result = await Settings.llm.complete({ prompt, responseFormat });

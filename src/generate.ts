@@ -6,11 +6,16 @@ import fs from "fs";
 import { generateEventComponent } from "@llamaindex/server";
 import { OpenAI } from "@llamaindex/openai";
 
+import { PGVectorStore, PostgresIndexStore } from "@llamaindex/postgres";
+// import {} from "@llamaindex/chroma";
+// import {MilvusVectorStore} from "@llamaindex/milvus";
+
 async function generateDatasource() {
   console.log(`Generating storage context...`);
   // Split documents, create embeddings and store them in the storage context
   const storageContext = await storageContextFromDefaults({
     persistDir: "storage",
+    // indexStore: new PostgresIndexStore(),
   });
   // load documents from current directoy into an index
   const reader = new SimpleDirectoryReader();

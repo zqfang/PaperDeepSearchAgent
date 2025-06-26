@@ -3,10 +3,14 @@ import {
   storageContextFromDefaults,
   VectorStoreIndex,
 } from "llamaindex";
+import { PGVectorStore, PostgresIndexStore } from "@llamaindex/postgres";
+// import {} from "@llamaindex/chroma";
+// import {MilvusVectorStore} from "@llamaindex/milvus";
 
 export async function getIndex(params?: any) {
   const storageContext = await storageContextFromDefaults({
-    persistDir: "storage",
+    persistDir:"storage",
+    //indexStore: new PostgresIndexStore(),
   });
 
   const numberOfDocs = Object.keys(

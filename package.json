@@ -10,12 +10,16 @@
     "eject": "llamaindex-server eject"
   },
   "dependencies": {
+    "@llamaindex/chroma": "^0.0.25",
     "@llamaindex/huggingface": "^0.1.14",
+    "@llamaindex/milvus": "^0.1.20",
     "@llamaindex/openai": "~0.4.0",
+    "@llamaindex/postgres": "^0.0.54",
     "@llamaindex/readers": "~3.1.4",
     "@llamaindex/server": "~0.2.1",
     "@llamaindex/tools": "~0.0.11",
     "@llamaindex/workflow": "~1.1.8",
+    "@tauri-apps/api": "^2.5.0",
     "dotenv": "^16.4.7",
     "llamaindex": "^0.11.8",
     "zod": "^3.23.8"
