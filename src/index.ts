@@ -5,10 +5,15 @@ import { workflowFactory } from "./app/workflow";
 
 initSettings();
 
-new LlamaIndexServer({
+const server = new LlamaIndexServer({
   workflow: workflowFactory,
   uiConfig: {
     componentsDir: "components",
-    devMode: true,
+    devMode: process.env.NODE_ENV !== 'production',
   },
-}).start();
+  // Add production-specific config
+  //port: process.env.PORT || 3000,
+  //host: process.env.HOST || 'localhost',
+});
+
+server.start();

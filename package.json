@@ -7,7 +7,8 @@
     "generate:ui": "tsx src/generate.ts ui",
     "dev": "nodemon",
     "start": "tsx src/index.ts",
-    "eject": "llamaindex-server eject"
+    "eject": "llamaindex-server eject",
+    "build": "next build"
   },
   "dependencies": {
     "@llamaindex/chroma": "^0.0.25",

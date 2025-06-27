@@ -23,9 +23,9 @@ npm install
 # dev
 npx tauri dev
 
-# build the binaries and install to your OS
-npx tauri build
 ```
+NOTE: `npx tauri build` not work because Tauri required static export while nextAuth not allowed
+
 
 
 Run front end only ?
